@@ -3,6 +3,7 @@ package com.niemannsolutions.composecollectwords
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 
 
 import androidx.compose.foundation.layout.Column
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 
 import androidx.compose.foundation.layout.padding
 
@@ -77,12 +79,16 @@ fun CollectWordsContent(words: List<String>, addWord: (String) -> Unit, clearWor
 
     Column {
         OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
             value = word,
             onValueChange = {word = it},
             label = { Text(text = "Write a word")},
             keyboardOptions = KeyboardOptions(KeyboardCapitalization.Words)
         )
-        Row {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+            horizontalArrangement  =  Arrangement.SpaceBetween
+        ) {
             Button(onClick = {
                 addWord(word)
                 word = ""
@@ -93,7 +99,7 @@ fun CollectWordsContent(words: List<String>, addWord: (String) -> Unit, clearWor
                 Text(text = "Clear words")
             }
         }
-        LazyColumn() {
+        LazyColumn(modifier = Modifier.padding(top = 16.dp)) {
             items(words) { word ->
                 WordItem(
                     word = word,
@@ -107,8 +113,9 @@ fun CollectWordsContent(words: List<String>, addWord: (String) -> Unit, clearWor
 @Composable
 fun WordItem(word: String, removeWord: ((String) -> Unit)?) {
     Row(
+        horizontalArrangement  =  Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(4.dp).padding(start = 8.dp)
+        modifier = Modifier.padding(4.dp).padding(start = 8.dp).fillMaxWidth()
     ) {
         Text(
             text = word,
