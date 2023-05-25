@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ComposeCollectWords</string>
+    <string name="start">Add words</string>
+    <string name="result">All words</string>
+    <string name="back_button">Back</string>
 </resources>
