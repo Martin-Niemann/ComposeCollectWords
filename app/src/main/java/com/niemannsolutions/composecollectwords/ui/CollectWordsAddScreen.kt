@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +27,6 @@ import com.niemannsolutions.composecollectwords.R
 import com.niemannsolutions.composecollectwords.ui.components.WordItem
 import com.niemannsolutions.composecollectwords.ui.theme.ComposeCollectWordsTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CollectWordsAddScreen(
     words: List<String>,
