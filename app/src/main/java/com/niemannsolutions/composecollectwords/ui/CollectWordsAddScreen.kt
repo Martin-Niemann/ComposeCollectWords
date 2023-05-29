@@ -17,7 +17,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -52,8 +51,9 @@ fun CollectWordsAddScreen(
             label = { Text(text = "Write a word") },
             keyboardOptions = KeyboardOptions(KeyboardCapitalization.Words)
         )
-        LazyColumn(modifier = Modifier
-            .padding(top = 16.dp)
+        LazyColumn(
+            modifier = Modifier
+                .padding(top = 16.dp)
         ) {
             items(words) { word ->
                 WordItem(
@@ -62,38 +62,34 @@ fun CollectWordsAddScreen(
                 )
             }
         }
-        Row(
-            verticalAlignment = Alignment.Bottom
-        ) {
-            Column {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+        Column {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+            ) {
+                Button(
+                    modifier = Modifier.weight(1f),
+                    onClick = {
+                        addWord(word)
+                        word = ""
+                    }
                 ) {
-                    Button(
-                        modifier = Modifier.weight(1f),
-                        onClick = {
-                            addWord(word)
-                            word = ""
-                        }
-                    ) {
-                        Text(text = "Add word")
-                    }
-                    Button(
-                        modifier = Modifier.weight(1f),
-                        onClick = clearWords
-                    ) {
-                        Text(text = "Clear words")
-                    }
+                    Text(text = "Add word")
                 }
                 Button(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    onClick = onNextButtonClicked
+                    modifier = Modifier.weight(1f),
+                    onClick = clearWords
                 ) {
-                    Text(text = "Next screen")
+                    Text(text = "Clear words")
                 }
+            }
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                onClick = onNextButtonClicked
+            ) {
+                Text(text = "Next screen")
             }
         }
     }
@@ -103,6 +99,6 @@ fun CollectWordsAddScreen(
 @Composable
 fun CollectWordsAddScreenPreview() {
     ComposeCollectWordsTheme {
-        CollectWordsAddScreen(words = listOf(), addWord = {}, clearWords = {}, removeWord = {}) {}
+        CollectWordsAddScreen(words = listOf(), addWord = {}, clearWords = {}, removeWord = {}, onNextButtonClicked = {})
     }
 }
