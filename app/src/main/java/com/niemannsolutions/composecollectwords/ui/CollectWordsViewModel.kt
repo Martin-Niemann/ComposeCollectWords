@@ -12,10 +12,12 @@ class CollectWordsViewModel : ViewModel() {
     val wordsState: StateFlow<CollectWordsState> = _wordsState.asStateFlow()
 
     fun addWord(word: String) {
-        _wordsState.update { currentState ->
-            val wordsUpdated: MutableList<String> = currentState.words.toMutableList()
-            wordsUpdated.add(word)
-            currentState.copy(words = wordsUpdated)
+        if(word.isNotEmpty()) {
+            _wordsState.update { currentState ->
+                val wordsUpdated: MutableList<String> = currentState.words.toMutableList()
+                wordsUpdated.add(word)
+                currentState.copy(words = wordsUpdated)
+            }
         }
     }
 
@@ -26,10 +28,12 @@ class CollectWordsViewModel : ViewModel() {
     }
 
     fun removeWord(word: String) {
-        _wordsState.update { currentState ->
-            val wordsUpdated: MutableList<String> = currentState.words.toMutableList()
-            wordsUpdated.remove(word)
-            currentState.copy(words = wordsUpdated)
+        if(word.isNotEmpty()) {
+            _wordsState.update { currentState ->
+                val wordsUpdated: MutableList<String> = currentState.words.toMutableList()
+                wordsUpdated.remove(word)
+                currentState.copy(words = wordsUpdated)
+            }
         }
     }
 }
